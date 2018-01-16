@@ -6,7 +6,7 @@ import signal
 from time import sleep
 
 from toolkit import stat
-
+import globals
 from webs import *
 import mopidy
 
@@ -18,8 +18,9 @@ parser.add_argument("--mopidy-port", dest="mport", type=int, help="Port for conn
 parser.add_argument("--mopidy-host", dest="mhost", type=str, help="The Mopidy (MPD) host. Usually localhost.", default="localhost")
 parser.add_argument('--cert', type=str, help="SSL/TLS Certificate file", default="/etc/letsencrypt/live/kamar.westbomb.net/fullchain.pem")
 parser.add_argument("--key", type=str, help="SSL/TLS key file", default="/etc/letsencrypt/live/kamar.westbomb.net/privkey.pem")
+parser.add_argument("-v", "--verbose", dest="verbose", action="store_true", help="Be verbose")
 args = parser.parse_args()
-
+globals.args = args
 
 def exit_handler():
     stat("Will now exit")
