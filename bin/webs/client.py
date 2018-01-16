@@ -1,7 +1,6 @@
 from toolkit import stat
 import websocket as websocketclient
 import time
-import thread
 import globals
 
 def start_websocket_client(host, port):
@@ -14,7 +13,7 @@ def start_websocket_client(host, port):
     def websocket_message(ws, message):
         if(globals.args.verbose):
             stat(str(message))
-            
+
 
     def websocket_error(ws, error):
         if ("Errno 111" in str(error)):
