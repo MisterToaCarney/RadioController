@@ -32,6 +32,12 @@ def start_websocket_client(host, port):
     stat("Waiting for music server to accept connection...")
 
     while (connected == False):
-        ws.run_forever()
-        time.sleep(2)
-
+        try:
+            ws.run_forever()
+        except KeyboardInterrupt:
+            ws.close()
+            return(0)
+        try:
+            time.sleep(2)
+        except KeyboardInterrupt:
+            return(0)
