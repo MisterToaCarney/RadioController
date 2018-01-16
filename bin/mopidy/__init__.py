@@ -1,11 +1,12 @@
 from toolkit import stat
 import subprocess
 import os, signal
+import globals
 
-def start_music_server(args):
+def start_music_server():
     global music_server_proc
     stat("Starting mopidy music server")
-    if (args.card == 1):
+    if (globals.args.card == 1):
         stat("Starting on card 1")
         music_server_proc = subprocess.Popen(["/usr/bin/mopidy", "--config", "/usr/share/mopidy/conf.d:/etc/mopidy/mopidy.conf"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False)
     else:

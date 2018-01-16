@@ -29,7 +29,7 @@ def exit_handler():
 atexit.register(exit_handler)
 
 stat("Calling for start of mopidy")
-mopidy.start_music_server(args)
+mopidy.start_music_server()
 stat("Call completed")
 stat("Calling for start of WebSocket server")
 server.start_websocket_server(args.cert, args.key, args.lport)
