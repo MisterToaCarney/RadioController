@@ -4,6 +4,23 @@ import time
 import thread
 
 def start_websocket_client(host, port):
+    def websocket_open(ws):
+        stat("Connected to WebSocket server.")
+        global connected
+        if (connected == False):
+            connected = True
+
+    def websocket_message(ws, message):
+        stat(str(message))
+
+    def websocket_error(ws, error):
+        if ("Errno 111" in str(error)):
+            pass
+        else:
+            stat(str(ws) + " " + str(error))
+
+    def websocket_close(ws):
+        stat("WebSocket Closed")
     stat("Starting client")
     url = "ws://"+str(host)+":"+str(port)+"/mopidy/ws"
     stat("URL is " + url)
@@ -18,20 +35,3 @@ def start_websocket_client(host, port):
         ws.run_forever()
         time.sleep(2)
 
-def websocket_open(ws):
-    stat("Connected to WebSocket server.")
-    global connected
-    if (connected == False):
-        connected = True
-
-def websocket_message(ws, message):
-    stat(str(message))
-
-def websocket_error(ws, error):
-    if ("Errno 111" in str(error)):
-        pass
-    else:
-        stat(str(ws) + " " + str(error))
-
-def websocket_close(ws):
-    stat("WebSocket Closed")
