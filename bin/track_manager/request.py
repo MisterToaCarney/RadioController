@@ -15,7 +15,7 @@ def play():
       "method": "core.playback.play",
       "jsonrpc": "2.0",
       "params": {
-        "tl_track": None, 
+        "tl_track": None,
         "tlid": None
       },
       "id": "play"
@@ -64,5 +64,23 @@ def addTrack(track):
       "jsonrpc": "2.0",
       "params": {"uri": track},
       "id": "addTrack"
+    }
+    return(json.dumps(req))
+
+def removeTrack(track):
+    req = {
+      "method": "core.tracklist.remove",
+      "jsonrpc": "2.0",
+      "params": {"criteria": {'uri': [track]}},
+      "id": "removeTrack"
+    }
+    return(json.dumps(req))
+
+def getTrackListLength():
+    req = {
+        "method": "core.tracklist.get_length",
+        "jsonrpc": "2.0",
+        "params": {},
+        "id": "getTLLength"
     }
     return(json.dumps(req))
