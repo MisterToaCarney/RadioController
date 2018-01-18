@@ -10,7 +10,6 @@ isPlaying = False
 playlist = []
 currentPlTrack = 0
 trackListLength = 0
-addedByMe = None
 leadingTrackByMe = None
 trackList = []
 
@@ -31,7 +30,6 @@ def read_message(txtMessage):
     global playlist
     global currentPlTrack
     global trackListLength
-    global addedByMe
     global leadingTrackByMe
     global trackList
 
@@ -43,8 +41,6 @@ def read_message(txtMessage):
 
             if (message['old_state'] == "playing" and message['new_state'] == "stopped"): # this should ideally never run
                 stat("Tracklist has no tracks! :O - Adding two")
-                addedByMe = True
-                leadingTrackByMe = True
                 for i in range(2):
                     add_next_track() # add two tracks
                 webs.client.send(track_manager.request.play())
@@ -91,11 +87,8 @@ def read_message(txtMessage):
             verbo("Shuffled playlist")
 
             if (firstRun == True and isPlaying == False):
-                addedByMe = True
-                leadingTrackByMe = True
-                webs.client.send(track_manager.request.addTrack(playlist[currentPlTrack])) # add current track to tracklist
-                currentPlTrack += 1
-                webs.client.send(track_manager.request.addTrack(playlist[currentPlTrack])) # line up next track
+                for i in range(2):
+                    add_next_track() # add two tracks
                 webs.client.send(track_manager.request.play()) # Start playing
                 stat("First track requested. Finished start up.")
                 firstRun = False
@@ -111,17 +104,12 @@ def read_message(txtMessage):
 
             if (prevLength < trackListLength): # if a track was added
                 verbo("A track was added")
-                if (addedByMe == True):
-                    verbo("Track was added by me. Will not delete.")
-                    addedByMe = False
-                elif (addedByMe == False):
-                    verbo("Track was added externally please standby...")
-                    if(trackListLength == 3 and leadingTrackByMe == True):
-                        leadingTrackByMe = False
-                        verbo("Leading track was added by me, will now delete")
-                        webs.client.send(track_manager.request.removeTrack(trackList[1]['uri']))
-                    elif(trackListLength > 3):
-                        verbo("Leading track was not added by me, will not delete")
+                if(trackListLength == 3 and leadingTrackByMe == True):
+                    leadingTrackByMe = False
+                    verbo("Leading track was added by me, will now delete")
+                    webs.client.send(track_manager.request.removeTrack(trackList[1]['uri']))
+                else:
+                    verbo("No need to delete.")
 
             elif (prevLength > trackListLength): # if a track was removed
                 verbo("A track was removed")
@@ -131,6 +119,7 @@ def read_message(txtMessage):
 
 def add_next_track():
     global currentPlTrack
+    global leadingTrackByMe
     currentPlTrack += 1
     try:
         req = track_manager.request.addTrack(playlist[currentPlTrack])
@@ -139,6 +128,5 @@ def add_next_track():
         shuffle(playlist)
         req = track_manager.request.addTrack(playlist[currentPlTrack])
         verbo("Reached end of playlist. Repeating...")
-    addedByMe = True
     leadingTrackByMe = True
     webs.client.send(req)
