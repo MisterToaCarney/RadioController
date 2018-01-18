@@ -1,4 +1,4 @@
-from toolkit import stat
+from toolkit import stat, verbo, debug
 import websocket as websocketclient
 import time
 import globals
@@ -15,8 +15,7 @@ def start_websocket_client(host, port):
         track_manager.init_music_server()
 
     def websocket_message(ws, message):
-        if(globals.args.verbose):
-            stat(str(message))
+        debug(str(message))
         track_manager.read_message(message)
 
 
@@ -28,11 +27,11 @@ def start_websocket_client(host, port):
             stat(str(ws) + " " + str(error))
 
     def websocket_close(ws):
-        stat("WebSocket Closed")
+        verbo("WebSocket Closed")
 
     stat("Starting client")
     url = "ws://"+str(host)+":"+str(port)+"/mopidy/ws"
-    stat("URL is " + url)
+    verbo("URL is " + url)
 
     global ws
     ws = websocketclient.WebSocketApp(url, on_message = websocket_message, on_error = websocket_error, on_close = websocket_close, on_open = websocket_open)

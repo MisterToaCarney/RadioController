@@ -1,5 +1,5 @@
 import json
-from toolkit import stat
+from toolkit import stat, verbo, debug
 import globals
 import webs.client
 import track_manager.request
@@ -18,11 +18,12 @@ def init_music_server():
     stat("Configuring music server")
 
     webs.client.send(track_manager.request.setConsume(True))
-    stat("Consume mode set")
+    verbo("Consume mode set")
     webs.client.send(track_manager.request.getPlayback())
-    stat("Getting playback state")
+    verbo("Getting playback state")
     webs.client.send(track_manager.request.getPlItems(globals.args.playlist))
-    stat("Getting playlist " + globals.args.playlist)
+    verbo("Getting playlist " + globals.args.playlist)
+    stat("Finished Configuring")
 
 def read_message(txtMessage):
     global firstRun
@@ -38,7 +39,7 @@ def read_message(txtMessage):
 
     if ('event' in message):
         if (message['event'] == "playback_state_changed"):
-            stat("Playback State Changed from " + str(message['old_state']) + " to " + str(message['new_state']))
+            verbo("Playback State Changed from " + str(message['old_state']) + " to " + str(message['new_state']))
 
             if (message['old_state'] == "playing" and message['new_state'] == "stopped"): # this should ideally never run
                 stat("Tracklist has no tracks! :O - Adding two")
@@ -65,38 +66,37 @@ def read_message(txtMessage):
                 isPlaying = False
 
         elif (message['event'] == "track_playback_started"):
-            stat("Track playback has started. Will send to WebSocket server")
+            verbo("Track playback has started. Will send to WebSocket server")
 
         elif (message['event'] == "track_playback_ended"):
-            stat("Track playback had ended.")
+            verbo("Track playback had ended.")
 
             ###
 
         elif (message['event'] == "tracklist_changed"):
             webs.client.send(track_manager.request.getTrackListLength()) # See how big the tracklist is
             webs.client.send(track_manager.request.getTrackList()) # Get the current tracklist for comparison
-            stat("Tracklist has changed. Will send to WebSocket server")
+            verbo("Tracklist has changed. Will send to WebSocket server")
 
     if ('jsonrpc' in message):
         if (message['id'] == "checkPlay"):
-            stat("Got playback state")
+            verbo("Got playback state")
             if (message['result'] == "playing"):
                 isPlaying = True
-                stat("Currently playing")
+                verbo("Currently playing")
             else:
                 isPlaying = False
-                stat("Not currently playing")
+                verbo("Not currently playing")
 
         elif (message['id'] == "getPlItems"):
             stat("Reccieved the playlist")
             playlist = []
             for track in message['result']:
-                if (globals.args.verbose):
-                    stat("Adding track " + track['uri'])
+                debug("Adding track " + track['uri'])
                 playlist.append(track['uri'])
 
             shuffle(playlist)
-            stat("Shuffled playlist")
+            verbo("Shuffled playlist")
 
             if (firstRun == True and isPlaying == False):
                 addedByMe = True
@@ -118,21 +118,21 @@ def read_message(txtMessage):
             trackListLength = message['result']
 
             if (prevLength < trackListLength): # if a track was added
-                stat("!! A track was added")
+                verbo("A track was added")
                 if (addedByMe == True):
-                    stat("!! Track was added by me. Will not delete.")
+                    verbo("Track was added by me. Will not delete.")
                     addedByMe = False
                 elif (addedByMe == False):
-                    stat("!! Track was added externally please standby...")
+                    verbo("Track was added externally please standby...")
                     if(trackListLength == 3 and leadingTrackByMe == True):
                         leadingTrackByMe = False
-                        stat("!!!! Leading track was added by me, will now delete")
+                        verbo("Leading track was added by me, will now delete")
                         webs.client.send(track_manager.request.removeTrack(trackList[1]['uri']))
                     elif(trackListLength > 3):
-                        stat("!!!! Leading track was not added by me, will not delete")
+                        verbo("Leading track was not added by me, will not delete")
 
             elif (prevLength > trackListLength): # if a track was removed
-                stat("!! A track was removed")
+                verbo("A track was removed")
 
             if (trackListLength == 1): # if tracklist only has one track in it
                 currentPlTrack += 1

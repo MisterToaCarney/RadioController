@@ -5,7 +5,7 @@ import atexit
 import signal
 from time import sleep
 
-from toolkit import stat
+from toolkit import stat, verbo
 import globals
 from webs import *
 import mopidy
@@ -19,6 +19,7 @@ parser.add_argument("--mopidy-host", dest="mhost", type=str, help="The Mopidy (M
 parser.add_argument('--cert', type=str, help="SSL/TLS Certificate file", default="/etc/letsencrypt/live/kamar.westbomb.net/fullchain.pem")
 parser.add_argument("--key", type=str, help="SSL/TLS key file", default="/etc/letsencrypt/live/kamar.westbomb.net/privkey.pem")
 parser.add_argument("-v", "--verbose", dest="verbose", action="store_true", help="Be verbose")
+parser.add_argument("-d", "--debug", dest="debug", action="store_true", help="Debug mode")
 args = parser.parse_args()
 globals.args = args
 
@@ -28,13 +29,13 @@ def exit_handler():
 
 atexit.register(exit_handler)
 
-stat("Calling for start of mopidy")
+verbo("Calling for start of mopidy")
 mopidy.start_music_server()
-stat("Call completed")
-stat("Calling for start of WebSocket server")
+verbo("Call completed")
+verbo("Calling for start of WebSocket server")
 server.start_websocket_server(args.cert, args.key, args.lport)
-stat("Call completed")
-stat("Calling for start of websocket client")
-stat("Root will now hand off control to websocket client.")
+verbo("Call completed")
+verbo("Calling for start of websocket client")
+verbo("Root will now hand off control to websocket client.")
 client.start_websocket_client(args.mhost, args.mport)
-stat("Call completed")
+verbo("Call completed")
