@@ -46,15 +46,7 @@ def read_message(txtMessage):
                 addedByMe = True
                 leadingTrackByMe = True
                 for i in range(2):
-                    currentPlTrack += 1
-                    try:
-                        req = track_manager.request.addTrack(playlist[currentPlTrack])
-                    except:
-                        currentPlTrack = 0
-                        shuffle(playlist)
-                        req = track_manager.request.addTrack(playlist[currentPlTrack])
-                        stat("Reached end of playlist. Repeating...")
-                    webs.client.send(req)
+                    add_next_track() # add two tracks
                 webs.client.send(track_manager.request.play())
 
             if (message['old_state'] == 'playing' and message['new_state'] == 'playing'): # if one track has finished and another is queued
@@ -135,14 +127,18 @@ def read_message(txtMessage):
                 verbo("A track was removed")
 
             if (trackListLength == 1): # if tracklist only has one track in it
-                currentPlTrack += 1
-                try:
-                    req = track_manager.request.addTrack(playlist[currentPlTrack]) # add track
-                except: # if at end of playlist :
-                    currentPlTrack = 0 # go to beginning
-                    shuffle(playlist) # reshuffle
-                    req = track_manager.request.addTrack(playlist[currentPlTrack]) # add track
-                    stat("Reached end of playlist. Repeating...")
-                addedByMe = True
-                leadingTrackByMe = True
-                webs.client.send(req)
+                add_next_track()
+
+def add_next_track():
+    global currentPlTrack
+    currentPlTrack += 1
+    try:
+        req = track_manager.request.addTrack(playlist[currentPlTrack])
+    except:
+        currentPlTrack = 0
+        shuffle(playlist)
+        req = track_manager.request.addTrack(playlist[currentPlTrack])
+        verbo("Reached end of playlist. Repeating...")
+    addedByMe = True
+    leadingTrackByMe = True
+    webs.client.send(req)
