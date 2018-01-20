@@ -94,6 +94,7 @@ def read_message(txtMessage):
                 firstRun = False
 
         elif (message['id'] == "getTL"):
+            webs.server.send(json.dumps(message).decode())
             trackList = []
             for track in message['result']:
                 trackList.append(track)
