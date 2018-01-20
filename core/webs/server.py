@@ -14,8 +14,8 @@ class SimpleServer(WebSocket):
     clients.remove(self)
 
 def send(message):
+    verbo("Sending message to all clients")
     for client in clients:
-        verbo("!!! Sending message to " + str(client))
         client.sendMessage(message)
 
 def start_websocket_server(cert, key, port):
