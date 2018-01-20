@@ -13,6 +13,11 @@ class SimpleServer(WebSocket):
   def handleClose(self):
     clients.remove(self)
 
+def send(message):
+    for client in clients:
+        verbo("!!! Sending message to " + str(client))
+        client.sendMessage(message)
+
 def start_websocket_server(cert, key, port):
     stat("Starting websocket server")
 

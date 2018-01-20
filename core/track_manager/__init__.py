@@ -1,7 +1,7 @@
 import json
 from toolkit import stat, verbo, debug
 import globals
-import webs.client
+import webs
 import track_manager.request
 from random import shuffle
 
@@ -54,7 +54,7 @@ def read_message(txtMessage):
                 isPlaying = False
 
         elif (message['event'] == "track_playback_started"):
-            verbo("Track playback has started. Will send to WebSocket server")
+            webs.server.send(json.dumps(message).decode())
 
         elif (message['event'] == "track_playback_ended"):
             verbo("Track playback had ended.")
