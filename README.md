@@ -7,4 +7,7 @@ If you would like to run this software, you will need to solve for dependencies 
 # Requirements
 
 * [Simple Websocket Server](http://github.com/dpallot/simple-websocket-server) `pip install git+https://github.com/dpallot/simple-websocket-server`
-* [WebSocket](https://pypi.python.org/pypi/websocket) `pip install websocket`
+* [WebSocket](https://pypi.python.org/pypi/websocket-client) `pip install websocket-client`
+* [Mopidy](https://mopidy.com/) with modules:
+	* mopidy-alsamixer
+	* mopidy-spotify
