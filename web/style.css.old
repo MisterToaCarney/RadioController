@@ -1,0 +1,164 @@
+/*
+Toa Carney 2017 (Don't worry about it)
+
+Colour Theme:
+https://coolors.co/ccdbdc-007ea7-90ddf0-b6e4ef-fffafb
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+body {
+  font-family: 'Titillium Web', sans-serif;
+  margin: 0;
+  background-color: #F4F4F4;
+  color: #07393C;
+}
+
+h1.main {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  text-align: left;
+}
+
+hr {
+border-top: 1px solid #07393C;
+box-shadow: 0;
+}
+
+h3 {
+  margin: 0.2em 0;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 0.2em;
+}
+
+input[type="text"] {
+  font-family: 'Titillium Web', sans-serif;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #B6E4EF;
+  border: 1px solid grey;
+  border-radius: 2px;
+  padding: 5px;
+  width: calc(100% - 62px);
+  font-size: 1em;
+
+}
+input[type="submit"] {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 1em;
+  background-color: #90DDF0;
+  border: 1px solid grey;
+  border-radius: 2px;
+  padding: 5px;
+  box-sizing: border-box;
+  width: 58px;
+}
+
+button {
+  font-size: 1em;
+  border: none;
+  border-bottom: 1px solid grey;
+  padding: 5px;
+  box-sizing: border-box;
+  width: 50px;
+  background-color: transparent;
+}
+
+div.card {
+  background-color: white;
+  box-shadow: 0 0 8px grey;
+  width: 90%;
+  margin: auto;
+  padding: 0.3em 1em;
+  margin-top: 1em;
+}
+div.card p {
+  margin: 0;
+}
+div.queue {
+  display: none;
+}
+
+
+div.top {
+  background-color: #0094C6;
+  width: 100%;
+  margin: 0;
+  padding-left: 4em;
+  padding-right: 4em;
+  display: inline-block;
+  color: white;
+}
+
+div.controls {
+  margin: 0 1em;
+}
+
+
+
+
+div.info {
+  margin-top: 12px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #B6E4EF;
+  border: 1px solid grey;
+  border-radius: 2px;
+  padding: 10px 5px;
+  width: 100%;
+
+
+  color: grey;
+}
+
+
+
+
+div.queue ol {
+  padding: 0em 1.7em;
+  margin: 0;
+}
+div.queue p {
+  margin: 0;
+}
+
+div.result {
+  border-bottom: 2px solid #07393C;
+  display: table;
+  width: 100%;
+}
+div.result p {
+  display: inline-block;
+  margin: 0.5em 0.5em;
+  max-width: calc(50% - 41px);
+}
+div.result p.artist {
+  text-align: right;
+  float: right;
+  max-width: calc(50% - 41px);
+}
+>
+
+/* Stupid Browser Compatability Measures Follow:
+Copied and pasted from StackOverflow (duh)
+*/
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #07393C;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #07393C;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: #07393C;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #07393C;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color: #07393C;
+}

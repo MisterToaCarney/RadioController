@@ -1,12 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+/*@import url('https://fonts.googleapis.com/css?family=Open+Sans');*/
+@import url('https://fonts.googleapis.com/css?family=Oxygen:400,700');
 
-body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    background: #f3f3f3;
-    font-size: 1.2em;
+
+:root {
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-family: 'Oxygen', sans-serif;
 }
 
+body {
+    margin: 0;
+    background-color: #f3f3f3;
+    font-size: 1.2em;
+}
 a {
 	color: #05c2d8;
 	text-decoration: none;
@@ -14,31 +19,60 @@ a {
 a:hover {
 	color: yellow;
 }
-
-h1 {
-	margin: 0.5em 0;
+audio {
+  width: 100%;
 }
-
-h4 {
-	margin: 0.5em 0;
-}
-
 
 header {
-	background-color: #05c2d8;
-	width: 100%;
-	padding: 0.1em 0 0 0;
-	color: white;
+  padding: 0.1px 0 0 0;
+  color: white;
+  width: 100%;
+  margin: 0;
+  background-color: #05c2d8;
 }
-div.header-cont {
-	width: 80%;
-	display: block;
-	margin: auto; 
+div.header-content {
+  width: 85%;
+  margin: auto;
+  margin-top: 3em;
 }
 
+.lr-container {
+  display: inline-block;
+  width: 100%;
+}
+
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+header .left {
+  font-size: 1.4em;
+  display: inline-block;
+  width: 65%;
+  text-align: left;
+}
+header .right {
+  text-align: right;
+  width: 35%;
+  display: inline-block;
+}
+.lr-container h1,
+.lr-container h2 {
+  margin-top: 0;
+}
+header .lr-container h2 {
+  margin-bottom: 0.4em;
+}
+header .lr-container p {
+  font-size: 0.8em;
+  overflow: scroll;
+}
 
 nav {
-	margin-top: 2.5em;
+  display: block;
+  width: 100%;
 }
 nav a {
 	color: inherit;
@@ -59,107 +93,41 @@ nav ul li.active {
 	color: white;
 }
 
-
-
-div.body {
-	padding: 0 3em;
-	color: #515151;
-}
-
 .card {
 	background-color: white;
 	-webkit-box-shadow: 0px 0px 6px 0px #c9c9c9;
  	-moz-box-shadow: 0px 0px 6px 0px #c9c9c9;
  	box-shadow: 0px 0px 6px 0px #c9c9c9;
- 	padding: 0.2em 1.5em 1em 1.5em;
-  	margin-top: 1em;
-  	box-sizing: border-box;
-  	width: 100%;
-  	text-align: left;
-  	overflow: hidden;
-}
-
-div.left {
-	display: inline-block;
-	width: 40%;
-}
-div.right {
-	width: calc(60% - 7px);
-	display: inline-block;
-}
-div.bottom {
-	display: block;
-
-}
-
-
-table.basic {
+	padding: 0.2em 1.5em 0.4em 1.5em;
+	margin-top: 1em;
+	box-sizing: border-box;
 	width: 100%;
-	border-spacing: 0;
-	border-collapse: collapse;
+	text-align: left;
+	overflow: hidden;
+  transition: height 1s;
 }
-table.basic td,th  {
-	border-bottom: 1px lightgrey solid;
-	padding: 0.3em 0;
-}
-
-table.weekly {
-	width: 100%;
-	border-spacing: 0;
-	text-align: center;
-	border-collapse: collapse;
-}
-table.weekly td,th {
-	border: 1px lightgrey solid;
-	padding: 0.3em 0;
-	width: 16.666%;
+.card .lr-container {
+  margin-top: 1em;
 }
 
-table.sixday {
-	width: 100%;
-	border-spacing: 0;
-	text-align: center;
-	border-collapse: collapse;
+div.body {
+  padding: 0 1.5em;
 }
-table.sixday td,th {
-	border: 1px lightgrey solid;
-	padding: 0.3em 0;
-	width: 14.2857%;
-	height: 1.3em;
-}
-
-
-table.notice {
-	width: 100%;
-	border-spacing: 0;
-	text-align: center;
-	border-collapse: collapse;
-}
-table.notice td,th {
-	border: 1px lightgrey solid;
-	padding: 0.3em 0;
-	width: 14.2857%;
-	height: 1.3em;
-}
-
-footer {
-	margin-top: 2em;
-	background-color: #05c2d8;
-	width: 100%;
-	padding: 1.5em 0;
-	color: white;
-}
-div.footer-cont {
-	width: 80%;
-	display: block;
-	margin: auto; 
-}
-
-
 #queue {
 	display: none;
 }
+#resultsCard {
+  display: none;
+}
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td {
+  border-bottom: 1px solid grey;
+  padding: 8px;
+}
 
 /* Forms */
 input[type='text'],
@@ -184,4 +152,69 @@ input[type='submit'] {
 }
 input[type='submit']:hover {
 	background-color: #34afbd;
+}
+
+footer {
+	margin-top: 2em;
+	background-color: #05c2d8;
+	width: 100%;
+	padding: 1.5em 0;
+	color: white;
+}
+div.footer-cont {
+	width: 90%;
+	display: block;
+	margin: auto;
+}
+
+button {
+  color: white;
+  background-color: #05c2d8;
+  border: 2px solid #05c2d8;
+	padding: 12px 16px;
+	border-radius: 4px;
+	font-size: 1em;
+  transition: 0.3s;
+  width: 100%;
+}
+button:hover {
+  color: black;
+  background-color: white;
+}
+button:focus {
+  outline: 0;
+}
+button:disabled {
+  color: black;
+  background-color: white;
+}
+button.queue {
+  width: initial;
+}
+
+@media screen and (max-width: 600px) {
+    div.body {
+      padding: 0 0.4em;
+    }
+    .card#resultsCard {
+      padding: 0.0em 0.5em 0.4em 0.5em;
+    }
+    #resultsCard h1,
+    #resultsCard h2,
+    #resultsCard p {
+      margin-left: 0.3em;
+    }
+    header .left {
+      width: 100%;
+    }
+    header .right {
+      width: 100%;
+      text-align: left;
+    }
+}
+
+@media screen and (max-width: 470px) {
+  .card#resultsCard {
+    font-size: 0.8em;
+  }
 }
