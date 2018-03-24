@@ -1,0 +1,220 @@
+/*@import url('https://fonts.googleapis.com/css?family=Open+Sans');*/
+@import url('https://fonts.googleapis.com/css?family=Oxygen:400,700');
+
+
+:root {
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-family: 'Oxygen', sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #f3f3f3;
+    font-size: 1.2em;
+}
+a {
+	color: #05c2d8;
+	text-decoration: none;
+}
+a:hover {
+	color: yellow;
+}
+audio {
+  width: 100%;
+}
+
+header {
+  padding: 0.1px 0 0 0;
+  color: white;
+  width: 100%;
+  margin: 0;
+  background-color: #05c2d8;
+}
+div.header-content {
+  width: 85%;
+  margin: auto;
+  margin-top: 3em;
+}
+
+.lr-container {
+  display: inline-block;
+  width: 100%;
+}
+
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+header .left {
+  font-size: 1.4em;
+  display: inline-block;
+  width: 65%;
+  text-align: left;
+}
+header .right {
+  text-align: right;
+  width: 35%;
+  display: inline-block;
+}
+.lr-container h1,
+.lr-container h2 {
+  margin-top: 0;
+}
+header .lr-container h2 {
+  margin-bottom: 0.4em;
+}
+header .lr-container p {
+  font-size: 0.8em;
+  overflow: scroll;
+}
+
+nav {
+  display: block;
+  width: 100%;
+}
+nav a {
+	color: inherit;
+}
+nav ul {
+	margin: 0;
+	padding: 0;
+}
+nav ul li {
+	display: inline-block;
+	padding: 0.3em 0;
+	margin: 0 0.4em;
+	font-size: 1.2em;
+	color: #d5f2f5
+}
+nav ul li.active {
+	border-bottom: yellow 3px solid;
+	color: white;
+}
+
+.card {
+	background-color: white;
+	-webkit-box-shadow: 0px 0px 6px 0px #c9c9c9;
+ 	-moz-box-shadow: 0px 0px 6px 0px #c9c9c9;
+ 	box-shadow: 0px 0px 6px 0px #c9c9c9;
+	padding: 0.2em 1.5em 0.4em 1.5em;
+	margin-top: 1em;
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	overflow: hidden;
+  transition: height 1s;
+}
+.card .lr-container {
+  margin-top: 1em;
+}
+
+div.body {
+  padding: 0 1.5em;
+}
+#queue {
+	display: none;
+}
+#resultsCard {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td {
+  border-bottom: 1px solid grey;
+  padding: 8px;
+}
+
+/* Forms */
+input[type='text'],
+input[type='password'] {
+	width: 100%;
+	border: 2px solid lightgrey;
+	box-sizing: border-box;
+	padding: 0.6em 0.3em;
+	border-radius: 4px;
+	font-size: 1em;
+	margin-bottom: 0.3em;
+}
+
+input[type='submit'] {
+	width: 100%;
+	background-color: #05c2d8;
+	border: 0;
+	padding: 0.6em 0.3em;
+	border-radius: 4px;
+	font-size: 1em;
+	color: white;
+}
+input[type='submit']:hover {
+	background-color: #34afbd;
+}
+
+footer {
+	margin-top: 2em;
+	background-color: #05c2d8;
+	width: 100%;
+	padding: 1.5em 0;
+	color: white;
+}
+div.footer-cont {
+	width: 90%;
+	display: block;
+	margin: auto;
+}
+
+button {
+  color: white;
+  background-color: #05c2d8;
+  border: 2px solid #05c2d8;
+	padding: 12px 16px;
+	border-radius: 4px;
+	font-size: 1em;
+  transition: 0.3s;
+  width: 100%;
+}
+button:hover {
+  color: black;
+  background-color: white;
+}
+button:focus {
+  outline: 0;
+}
+button:disabled {
+  color: black;
+  background-color: white;
+}
+button.queue {
+  width: initial;
+}
+
+@media screen and (max-width: 600px) {
+    div.body {
+      padding: 0 0.4em;
+    }
+    .card#resultsCard {
+      padding: 0.0em 0.5em 0.4em 0.5em;
+    }
+    #resultsCard h1,
+    #resultsCard h2,
+    #resultsCard p {
+      margin-left: 0.3em;
+    }
+    header .left {
+      width: 100%;
+    }
+    header .right {
+      width: 100%;
+      text-align: left;
+    }
+}
+
+@media screen and (max-width: 470px) {
+  .card#resultsCard {
+    font-size: 0.8em;
+  }
+}
