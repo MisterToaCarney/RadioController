@@ -3,7 +3,7 @@
 
 $query = $_GET['p'];
 
-$result = shell_exec("/var/www/radio/scripts/listTracks.sh \"$query\"");
+$result = shell_exec("../scripts/listTracks.sh \"$query\"");
 
 echo($result);
  ?>

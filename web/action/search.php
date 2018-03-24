@@ -3,7 +3,7 @@
 
 $query = $_GET['q'];
 
-$result = shell_exec("/var/www/radio/scripts/search.sh \"$query\"");
+$result = shell_exec("../scripts/search.sh \"$query\"");
 
 echo($result);
 
