@@ -69,6 +69,10 @@ header .lr-container p {
   font-size: 0.8em;
   overflow: scroll;
 }
+header .lr-container p::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 
 nav {
   display: block;
