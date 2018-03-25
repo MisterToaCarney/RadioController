@@ -14,4 +14,5 @@ echo "URI Not Found"
 exit
 fi
 echo "$resp"
-echo $1 >> /var/www/radio/scripts/recentTracks.txt
+cd "$(dirname "$0")"
+echo $1 >> recentTracks.txt

@@ -109,7 +109,14 @@ function playSong(e,uri) {
   playButton.innerHTML = "✓";
 }
 function playListener() {
-  if (this.responseText != "You can't do that.") {
+  if (this.responseText == "You can't do that.") {
+    console.error("Fatal protocol error.");
+  }
+  else if (this.responseText.startsWith("Too early.")) {
+    console.warn("Request too early: " + this.responseText);
+  }
+  else {
+    //console.log(this.responseText); 
     var obj = JSON.parse(this.responseText);
     console.log(obj);
   }

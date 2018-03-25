@@ -131,3 +131,8 @@ Temporary Items
 # SMB File server
 
 .smbdelete*
+
+# Files Created by PHP + scripts
+
+requests.csv
+recentTracks.txt
