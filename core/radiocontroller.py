@@ -20,18 +20,21 @@ parser.add_argument('--cert', type=str, help="SSL/TLS Certificate file", default
 parser.add_argument("--key", type=str, help="SSL/TLS key file", default="/etc/letsencrypt/live/www.flexfm.org/privkey.pem")
 parser.add_argument("-v", "--verbose", dest="verbose", action="store_true", help="Be verbose")
 parser.add_argument("-d", "--debug", dest="debug", action="store_true", help="Debug mode")
+parser.add_argument("-e", "--existing", dest="existing", action="store_true", help="Don't start mopidy, run on an existing mopidy process")
 args = parser.parse_args()
 globals.args = args
 
 def exit_handler():
     stat("Will now exit")
-    mopidy.stop_music_server()
+    if (globals.args.existing == False):
+        mopidy.stop_music_server()
 
 atexit.register(exit_handler)
 
-verbo("Calling for start of mopidy")
-mopidy.start_music_server()
-verbo("Call completed")
+if (globals.args.existing == False):
+    verbo("Calling for start of mopidy")
+    mopidy.start_music_server()
+    verbo("Call completed")
 verbo("Calling for start of WebSocket server")
 server.start_websocket_server(args.cert, args.key, args.lport)
 verbo("Call completed")
